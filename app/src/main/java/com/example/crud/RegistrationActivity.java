@@ -32,7 +32,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        //bind / initialize
+        //bind / initialize all
         userNameEdt = findViewById(R.id.editUsername);
         pwdEdt = findViewById(R.id.editPassword);
         cnfPwdEdt = findViewById(R.id.editConfirmPassword);
