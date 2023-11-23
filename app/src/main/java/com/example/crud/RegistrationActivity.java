@@ -44,7 +44,7 @@ public class RegistrationActivity extends AppCompatActivity {
         loginTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(RegistrationActivity.this, LoginActivity.class);
+                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(i);
             }
         });
@@ -53,13 +53,14 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingPB.setVisibility(View.VISIBLE);
-                String username = userNameEdt.getText().toString();
-                String pwd = pwdEdt.getText().toString();
-                String cnfPwd = cnfPwdEdt.getText().toString();
+                String username = String.valueOf(userNameEdt.getText());
+                String pwd = String.valueOf(pwdEdt.getText());
+                String cnfPwd = String.valueOf(cnfPwdEdt.getText());
                 if(!pwd.equals(cnfPwd)){
                     Toast.makeText(RegistrationActivity.this, "passwords do not match", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(username) && TextUtils.isEmpty(pwd)) {
                     Toast.makeText(RegistrationActivity.this, "Please fill in all the details", Toast.LENGTH_SHORT).show();
+                    loadingPB.setVisibility(View.GONE);
                 } else {
                     nAuth.createUserWithEmailAndPassword(username, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -67,7 +68,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 loadingPB.setVisibility(View.GONE);
                                 Toast.makeText(RegistrationActivity.this, "Registration Complete!", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(RegistrationActivity.this, LoginActivity.class);
+                                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                                 startActivity(i);
                                 finish();
                             }

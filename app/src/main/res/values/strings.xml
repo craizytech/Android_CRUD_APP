@@ -6,4 +6,6 @@
     <string name="already_a_user_login_here">Already a user? Login Here</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="new_user_register_here">new user? Register here</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="login">Login</string>
 </resources>

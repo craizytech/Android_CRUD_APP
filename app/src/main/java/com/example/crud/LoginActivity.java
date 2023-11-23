@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(username) && TextUtils.isEmpty(password)){
                     Toast.makeText(LoginActivity.this, "Please enter the details", Toast.LENGTH_SHORT).show();
+                    loadingPB.setVisibility(View.GONE);
                     return;
                 }else {
                     mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -83,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null){
-            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(i);
             this.finish();
         }
