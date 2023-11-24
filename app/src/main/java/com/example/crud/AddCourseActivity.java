@@ -3,10 +3,12 @@ package com.example.crud;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,14 +58,21 @@ public class AddCourseActivity extends AppCompatActivity {
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        //set the data in our firebase db
+                        databaseReference.child(courseID).setValue(courseRVModel);
+                        //displaying the toast message
+                        Toast.makeText(AddCourseActivity.this, "Course Added..", Toast.LENGTH_SHORT).show();
+                        //start the main Activity
+                        startActivity(new Intent(AddCourseActivity.this, MainActivity.class));
 
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
+                        //display the failure message on the line below
+                        Toast.makeText(AddCourseActivity.this, "Failed to add Course", Toast.LENGTH_SHORT).show();
                     }
-                })
+                });
             }
         });
     }
